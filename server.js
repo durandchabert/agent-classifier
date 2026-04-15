@@ -11,11 +11,15 @@ const upload = multer({ limits: { fileSize: 30 * 1024 * 1024 } });
 app.use(express.json({ limit: '10mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-const OPENAI_MODEL = process.env.OPENAI_MODEL || 'gpt-4o';
+const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
+const ANTHROPIC_MODEL = process.env.ANTHROPIC_MODEL || 'claude-opus-4-5';
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY; // optional, used only for Whisper
 
+if (!ANTHROPIC_API_KEY) {
+  console.warn('⚠️  ANTHROPIC_API_KEY manquant — l\'analyse ne fonctionnera pas.');
+}
 if (!OPENAI_API_KEY) {
-  console.warn('⚠️  OPENAI_API_KEY manquant — ajoute-le dans les variables d\'environnement.');
+  console.warn('ℹ️  OPENAI_API_KEY absent — la dictée Whisper sera désactivée (le navigateur utilisera la reconnaissance vocale native).');
 }
 
 const CLASSIFIER_PROMPT = `# Agent Classifier — Prompt v2
@@ -61,7 +65,7 @@ Description, outils, timeline, équipe, coût/mois, ce qu'on gagne, ce qu'on per
 ### Version Cat 2
 (idem + trigger to upgrade)
 ### Version Cat 3
-(idem + question honnête : est-ce que ça vaut vraiment le coup sur ce périmètre ?)
+(idem + question honnête)
 
 ## 5. Delta IA vs sans IA
 ### 5a. Baseline actuelle
@@ -90,10 +94,18 @@ Phase 1 (cat X, durée, objectif, critère de sortie), Phase 2, Phase 3.
 
 Si l'input est vague, signale-le et fais quand même l'analyse avec des hypothèses explicites.`;
 
-// ===== Whisper transcription
+// ===== Config (expose to frontend whether Whisper is available)
+app.get('/api/config', (req, res) => {
+  res.json({
+    whisperEnabled: !!OPENAI_API_KEY,
+    model: ANTHROPIC_MODEL
+  });
+});
+
+// ===== Whisper transcription (optionnel - seulement si OPENAI_API_KEY présent)
 app.post('/api/transcribe', upload.single('file'), async (req, res) => {
   try {
-    if (!OPENAI_API_KEY) return res.status(500).json({ error: 'OPENAI_API_KEY non configuré' });
+    if (!OPENAI_API_KEY) return res.status(501).json({ error: 'Whisper non configuré (ajoute OPENAI_API_KEY pour l\'activer)' });
     if (!req.file) return res.status(400).json({ error: 'No audio file' });
 
     const formData = new FormData();
@@ -117,10 +129,10 @@ app.post('/api/transcribe', upload.single('file'), async (req, res) => {
   }
 });
 
-// ===== Analyze
+// ===== Analyze avec Claude
 app.post('/api/analyze', async (req, res) => {
   try {
-    if (!OPENAI_API_KEY) return res.status(500).json({ error: 'OPENAI_API_KEY non configuré' });
+    if (!ANTHROPIC_API_KEY) return res.status(500).json({ error: 'ANTHROPIC_API_KEY non configuré' });
     const { text = '', files = [] } = req.body || {};
     if (!text.trim() && (!files || files.length === 0)) {
       return res.status(400).json({ error: 'Fournis du texte ou des documents.' });
@@ -134,19 +146,20 @@ app.post('/api/analyze', async (req, res) => {
       }
     }
 
-    const r = await fetch('https://api.openai.com/v1/chat/completions', {
+    const r = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
-        'Authorization': 'Bearer ' + OPENAI_API_KEY,
-        'Content-Type': 'application/json'
+        'x-api-key': ANTHROPIC_API_KEY,
+        'anthropic-version': '2023-06-01',
+        'content-type': 'application/json'
       },
       body: JSON.stringify({
-        model: OPENAI_MODEL,
+        model: ANTHROPIC_MODEL,
+        max_tokens: 8000,
+        system: CLASSIFIER_PROMPT,
         messages: [
-          { role: 'system', content: CLASSIFIER_PROMPT },
           { role: 'user', content: userContent }
-        ],
-        temperature: 0.4
+        ]
       })
     });
     if (!r.ok) {
@@ -154,14 +167,19 @@ app.post('/api/analyze', async (req, res) => {
       return res.status(r.status).json({ error: t });
     }
     const data = await r.json();
-    const md = data.choices[0].message.content;
+    const md = data.content?.[0]?.text || '';
     res.json({ report: md });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
 });
 
-app.get('/health', (req, res) => res.json({ ok: true, model: OPENAI_MODEL, hasKey: !!OPENAI_API_KEY }));
+app.get('/health', (req, res) => res.json({
+  ok: true,
+  model: ANTHROPIC_MODEL,
+  hasAnthropicKey: !!ANTHROPIC_API_KEY,
+  whisperEnabled: !!OPENAI_API_KEY
+}));
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`🚀 Agent Classifier sur http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`🚀 Agent Classifier (Claude ${ANTHROPIC_MODEL}) sur http://localhost:${PORT}`));
