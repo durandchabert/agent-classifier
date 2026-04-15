@@ -55,13 +55,38 @@ Résumé en 2-3 phrases.
 ## 3. Débunk
 Si pertinent : « Voilà ce que tu penses construire », « Voilà ce que tu construis vraiment », « Pourquoi l'écart ». Sinon dire « Pas de débunk nécessaire ».
 
-## 4. Projection des 3 versions
-### Version Cat 1
-Description, outils, timeline, équipe, coût/mois, ce qu'on gagne, ce qu'on perd.
-### Version Cat 2
-(idem + trigger to upgrade)
-### Version Cat 3
-(idem + question honnête)
+## 4. Projection des 3 versions — OUVRE LES CHAKRAS
+
+⚠️ SECTION CRITIQUE. C'est ici que tu inspires l'équipe. Pas un tableau sec. Pas "outils, timeline, coût" en trois lignes. Tu racontes une HISTOIRE concrète de ce que deviendrait le projet dans chacune des 3 catégories. L'équipe doit pouvoir visualiser, ressentir, comprendre ce que ça change concrètement pour leurs utilisateurs, leurs opérateurs, leur P&L.
+
+Pour CHACUNE des 3 versions, tu produis au minimum :
+
+**a) Le scénario en narration (4-6 phrases riches)** — pas "l'IA classe les emails". Mais : « Lundi 9h, Sophie du support ouvre son dashboard. 47 emails sont arrivés dans la nuit. 32 ont déjà été catégorisés, 18 ont une réponse pré-rédigée qu'elle n'a qu'à valider en 10 secondes. Les 14 restants sont flaggés "intervention humaine nécessaire" avec le contexte déjà extrait. En 40 minutes, la file est vide — contre 3h avant. Mais la semaine suivante, un nouveau type de réclamation apparaît : l'équipe produit vient de changer la politique de remboursement. L'IA ne le sait pas encore — elle continue à appliquer l'ancienne règle. Quelqu'un doit updater le playbook. » — C'est ça, la profondeur attendue.
+
+**b) 3 à 5 exemples concrets d'interactions / de scénarios** que le système gère. Pas "classification d'emails" mais "email d'un client qui menace de partir car sa commande #4521 est en retard depuis 6 jours → le système consulte Shopify, voit que le transporteur a perdu le colis, génère une réponse qui propose (1) renvoi express gratuit (2) avoir de 15% (3) remboursement partiel, et met le ticket en file 'validation manager'". Ça doit PARLER à qui lit.
+
+**c) L'architecture en 3-5 puces** : quels outils, quelles intégrations, où vit le state, qui déclenche quoi. Nomme des choses précises (n8n / Zapier / LangGraph / Redis / Postgres / Slack API / Intercom / Zendesk / HubSpot / Airtable / etc.), pas "outils IA".
+
+**d) Ce que ça change pour l'équipe** — qui fait quoi, qui disparaît, qui apparaît, quelle compétence devient critique.
+
+**e) Ce qu'on gagne concrètement** — chiffre réaliste : "~65% des tickets traités sans intervention humaine, cycle moyen 4h → 40 min, 2 ETP libérés pour du traitement complexe".
+
+**f) Ce qu'on perd ou ce qui devient fragile** — sois honnête : "dépendance totale à la qualité du playbook, chaque changement produit doit être répercuté manuellement, pas de capacité à gérer des cas hors-script".
+
+**g) Timeline, équipe, coût/mois, outils** — synthétique en fin de version.
+
+**h) Pour Cat 2 et Cat 3 : trigger to upgrade** — quel signal précis indique qu'on a outgrown la version d'en-dessous.
+
+**i) Pour Cat 3 spécifiquement : la question honnête** — "Est-ce que ce multi-agent vaut vraiment le coup sur le scope actuel, ou est-ce qu'on élargit artificiellement le périmètre pour justifier la complexité ?"
+
+### Version Cat 1 — Automation déterministe
+[Applique a→g, sois concret, nomme les outils, donne des exemples réels du use case soumis]
+
+### Version Cat 2 — Agents raisonneurs
+[idem + h]
+
+### Version Cat 3 — Réseau multi-agent
+[idem + h + i]
 
 ## 5. Delta IA vs sans IA
 ### 5a. Baseline actuelle
@@ -154,7 +179,8 @@ app.post('/api/analyze', async (req, res) => {
           { role: 'system', content: CLASSIFIER_PROMPT },
           { role: 'user', content: userContent }
         ],
-        temperature: 0.4
+        temperature: 0.55,
+        max_tokens: 6000
       })
     });
     if (!r.ok) {

@@ -137,19 +137,36 @@
   .verdict-gap { margin-top: 10px; padding: 10px 14px; background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent); border-radius: 6px; font-size: 13px; color: #d0d0d6; }
 
   /* ===== Legend (reminder of 3 categories) ===== */
-  .legend { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px; }
-  .legend-card { background: var(--panel-2); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; position: relative; overflow: hidden; }
+  .legend-title-row { margin: 4px 0 14px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .legend-title-main { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; color: white; letter-spacing: -0.01em; }
+  .legend-title-sub { font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; }
+  .legend { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 32px; }
+  .legend-card { background: var(--panel-2); border: 1px solid var(--border); border-radius: 16px; padding: 20px 22px; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 12px; transition: transform 0.2s, border-color 0.2s; }
+  .legend-card:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.16); }
   .legend-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; }
   .legend-card.l1::before { background: #4ade80; }
   .legend-card.l2::before { background: #7c6cff; }
   .legend-card.l3::before { background: #ff7ab6; }
-  .legend-num { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; margin-bottom: 2px; }
+  .legend-head { display: flex; align-items: center; gap: 12px; }
+  .legend-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .legend-icon svg { width: 20px; height: 20px; }
+  .legend-icon.l1 { background: rgba(74,222,128,0.12); color: #4ade80; }
+  .legend-icon.l2 { background: rgba(124,108,255,0.14); color: #a898ff; }
+  .legend-icon.l3 { background: rgba(255,122,182,0.12); color: #ff7ab6; }
+  .legend-num { font-family: 'Fraunces', serif; font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 2px; }
   .legend-num.l1 { color: #4ade80; }
-  .legend-num.l2 { color: #7c6cff; }
+  .legend-num.l2 { color: #a898ff; }
   .legend-num.l3 { color: #ff7ab6; }
-  .legend-title { font-size: 13px; font-weight: 600; color: white; margin-bottom: 6px; }
-  .legend-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
-  .legend-meta { font-size: 11px; color: var(--text-dim); margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
+  .legend-title { font-size: 15px; font-weight: 600; color: white; line-height: 1.25; }
+  .legend-desc { font-size: 13px; color: var(--text-muted); line-height: 1.55; }
+  .legend-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .legend-tags .tag { font-size: 11px; padding: 3px 9px; border-radius: 999px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: #d0d0d6; font-family: 'JetBrains Mono', ui-monospace, monospace; letter-spacing: 0.02em; }
+  .legend-meta { display: flex; flex-wrap: wrap; gap: 10px 14px; font-size: 12px; color: var(--text-muted); padding-top: 10px; border-top: 1px solid var(--border); }
+  .legend-meta span { display: inline-flex; align-items: center; gap: 4px; }
+  .legend-share { margin-top: auto; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; padding: 6px 10px; border-radius: 8px; text-align: center; }
+  .legend-share.l1 { background: rgba(74,222,128,0.10); color: #4ade80; border: 1px solid rgba(74,222,128,0.25); }
+  .legend-share.l2 { background: rgba(124,108,255,0.12); color: #a898ff; border: 1px solid rgba(124,108,255,0.28); }
+  .legend-share.l3 { background: rgba(255,122,182,0.10); color: #ff7ab6; border: 1px solid rgba(255,122,182,0.25); }
 
   /* ===== Report body ===== */
   .report { background: var(--panel); border: 1px solid var(--border); border-radius: 20px; padding: 44px 48px; line-height: 1.7; font-size: 15px; color: #e0e0e6; }
@@ -304,24 +321,73 @@
       </div>
     </div>
     <div id="verdictBanner"></div>
+    <div class="legend-title-row">
+      <div class="legend-title-main">Les 3 catégories — rappel</div>
+      <div class="legend-title-sub">Framework Lenny Rachitsky / Farooq / Rajwani</div>
+    </div>
     <div class="legend" id="legend">
       <div class="legend-card l1">
-        <div class="legend-num l1">Cat 1</div>
-        <div class="legend-title">Deterministic automation</div>
-        <div class="legend-desc">Defined flow, AI at nodes. Flowchart possible, &lt;20 branches.</div>
-        <div class="legend-meta">2-6 wks · 1-2 people · $0.5-2K/mo · 60-70% of cases</div>
+        <div class="legend-head">
+          <div class="legend-icon l1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+          </div>
+          <div>
+            <div class="legend-num l1">Catégorie 1</div>
+            <div class="legend-title">Automation déterministe</div>
+          </div>
+        </div>
+        <div class="legend-desc">Tu dessines le flow complet. L'IA gère le contenu aux nœuds (classification, génération). Chemin prévisible, moins de 20 branches.</div>
+        <div class="legend-tags">
+          <span class="tag">n8n</span><span class="tag">Zapier</span><span class="tag">Make</span>
+        </div>
+        <div class="legend-meta">
+          <span>⏱ 2-6 semaines</span>
+          <span>👥 1-2 pers</span>
+          <span>💰 $0.5-2K/mois</span>
+        </div>
+        <div class="legend-share l1">60-70% des cas enterprise</div>
       </div>
       <div class="legend-card l2">
-        <div class="legend-num l2">Cat 2</div>
-        <div class="legend-title">Reasoning agents (ReAct)</div>
-        <div class="legend-desc">You define the tools, AI decides. Observe → reason → act.</div>
-        <div class="legend-meta">2-4 mo · 3-5 people · $2-15K/mo · 25-30% of cases</div>
+        <div class="legend-head">
+          <div class="legend-icon l2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.2-8.56"></path><polyline points="21 3 21 9 15 9"></polyline></svg>
+          </div>
+          <div>
+            <div class="legend-num l2">Catégorie 2</div>
+            <div class="legend-title">Agents raisonneurs (ReAct)</div>
+          </div>
+        </div>
+        <div class="legend-desc">Tu donnes les outils, l'IA choisit quoi faire ensuite. Boucle observer → raisonner → agir. Même input, séquences différentes.</div>
+        <div class="legend-tags">
+          <span class="tag">LangGraph</span><span class="tag">CrewAI</span><span class="tag">AutoGen</span>
+        </div>
+        <div class="legend-meta">
+          <span>⏱ 2-4 mois</span>
+          <span>👥 3-5 pers</span>
+          <span>💰 $2-15K/mois</span>
+        </div>
+        <div class="legend-share l2">25-30% des cas enterprise</div>
       </div>
       <div class="legend-card l3">
-        <div class="legend-num l3">Cat 3</div>
-        <div class="legend-title">Multi-agent network</div>
-        <div class="legend-desc">Coordinated specialized agents, delegation, hours/days.</div>
-        <div class="legend-meta">4-8 mo · 5-10+ people · $10-50K+/mo · 5-10% of cases</div>
+        <div class="legend-head">
+          <div class="legend-icon l3">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><circle cx="5" cy="5" r="2"></circle><circle cx="19" cy="5" r="2"></circle><circle cx="5" cy="19" r="2"></circle><circle cx="19" cy="19" r="2"></circle><line x1="7" y1="6" x2="10" y2="10"></line><line x1="17" y1="6" x2="14" y2="10"></line><line x1="7" y1="18" x2="10" y2="14"></line><line x1="17" y1="18" x2="14" y2="14"></line></svg>
+          </div>
+          <div>
+            <div class="legend-num l3">Catégorie 3</div>
+            <div class="legend-title">Réseau multi-agent</div>
+          </div>
+        </div>
+        <div class="legend-desc">Plusieurs agents spécialisés se coordonnent, se délèguent des tâches. Un orchestrateur coordonne sans contrôler chaque décision. Heures, jours.</div>
+        <div class="legend-tags">
+          <span class="tag">ADK</span><span class="tag">AutoGen</span><span class="tag">Custom</span>
+        </div>
+        <div class="legend-meta">
+          <span>⏱ 4-8 mois</span>
+          <span>👥 5-10+ pers</span>
+          <span>💰 $10-50K+/mois</span>
+        </div>
+        <div class="legend-share l3">5-10% des cas enterprise</div>
       </div>
     </div>
     <div class="report" id="reportContent"></div>
