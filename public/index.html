@@ -229,17 +229,17 @@
 <main class="wrap">
   <div class="hero">
     <div class="eyebrow">Framework Lenny Rachitsky / Farooq / Rajwani</div>
-    <h1>Le projet est-il vraiment <span class="accent">catégorie 3</span>,<br>ou simplement bien vendu ?</h1>
-    <p class="tagline">Dicte ton projet, joins tes docs. On te dit dans quelle catégorie il tombe vraiment, ce que les autres catégories ressembleraient, et à partir de quelle catégorie l'IA bouge l'aiguille.</p>
+    <h1>Knowing which <span class="accent">agentic solution</span><br>you need.</h1>
+    <p class="tagline">Describe your project, drop your docs. We'll tell you which category it really falls into, what the other categories would look like, and from which category AI actually moves the needle.</p>
   </div>
 
   <div class="stage">
     <div class="stage-inner">
 
       <div class="section">
-        <div class="section-label"><span class="section-num">1</span>Dicter</div>
+        <div class="section-label"><span class="section-num">1</span>Dictate</div>
         <div class="mic-row" id="micRow">
-          <button class="mic-btn" id="micBtn" aria-label="Enregistrer">
+          <button class="mic-btn" id="micBtn" aria-label="Record">
             <svg class="mic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
               <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
@@ -248,15 +248,15 @@
             </svg>
           </button>
           <div class="mic-info">
-            <div class="mic-title">Raconte le projet à voix haute</div>
-            <div class="mic-status" id="micStatus">Clique sur le micro pour enregistrer.</div>
+            <div class="mic-title">Describe the project out loud</div>
+            <div class="mic-status" id="micStatus">Tap the mic to start recording.</div>
           </div>
         </div>
       </div>
 
       <div class="section">
-        <div class="section-label"><span class="section-num">2</span>Contexte</div>
-        <textarea id="textInput" placeholder="Décris le projet : process actuel, résultat attendu, utilisateurs, volume, sources de données, ambition affichée…"></textarea>
+        <div class="section-label"><span class="section-num">2</span>Context</div>
+        <textarea id="textInput" placeholder="Describe the project: current process, expected outcome, users, volume, data sources, stated ambition…"></textarea>
       </div>
 
       <div class="section">
@@ -268,15 +268,15 @@
             <polyline points="17 8 12 3 7 8"></polyline>
             <line x1="12" y1="3" x2="12" y2="15"></line>
           </svg>
-          <div class="drop-text"><strong>Glisse tes fichiers</strong> ou clique pour parcourir</div>
-          <div class="drop-hint">PDF, TXT, MD — jusqu'à 30 Mo par fichier</div>
+          <div class="drop-text"><strong>Drop your files</strong> or click to browse</div>
+          <div class="drop-hint">PDF, TXT, MD — up to 30 MB per file</div>
         </label>
         <div class="files" id="fileList"></div>
       </div>
 
       <div class="cta-row">
         <button class="btn-analyze" id="analyzeBtn">
-          <span id="analyzeLabel">Classifier le projet</span>
+          <span id="analyzeLabel">Classify project</span>
           <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </button>
       </div>
@@ -287,11 +287,11 @@
 
   <div id="reportWrap">
     <div class="report-head">
-      <div class="report-title">Rapport</div>
+      <div class="report-title">Report</div>
       <div class="report-actions">
         <button class="btn-ghost" id="copyBtn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-          Copier
+          Copy
         </button>
         <button class="btn-ghost" id="dlMdBtn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
@@ -299,7 +299,7 @@
         </button>
         <button class="btn-ghost" id="dlPdfBtn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-          Imprimer / PDF
+          Print / PDF
         </button>
       </div>
     </div>
@@ -307,21 +307,21 @@
     <div class="legend" id="legend">
       <div class="legend-card l1">
         <div class="legend-num l1">Cat 1</div>
-        <div class="legend-title">Automation déterministe</div>
-        <div class="legend-desc">Flow défini, IA aux nœuds. Flowchart possible, &lt;20 branches.</div>
-        <div class="legend-meta">2-6 sem · 1-2 pers · $0.5-2K/mois · 60-70% des cas</div>
+        <div class="legend-title">Deterministic automation</div>
+        <div class="legend-desc">Defined flow, AI at nodes. Flowchart possible, &lt;20 branches.</div>
+        <div class="legend-meta">2-6 wks · 1-2 people · $0.5-2K/mo · 60-70% of cases</div>
       </div>
       <div class="legend-card l2">
         <div class="legend-num l2">Cat 2</div>
-        <div class="legend-title">Agents raisonneurs (ReAct)</div>
-        <div class="legend-desc">Tu définis les outils, l'IA décide. Observer → raisonner → agir.</div>
-        <div class="legend-meta">2-4 mois · 3-5 pers · $2-15K/mois · 25-30% des cas</div>
+        <div class="legend-title">Reasoning agents (ReAct)</div>
+        <div class="legend-desc">You define the tools, AI decides. Observe → reason → act.</div>
+        <div class="legend-meta">2-4 mo · 3-5 people · $2-15K/mo · 25-30% of cases</div>
       </div>
       <div class="legend-card l3">
         <div class="legend-num l3">Cat 3</div>
-        <div class="legend-title">Réseau multi-agent</div>
-        <div class="legend-desc">Agents spécialisés coordonnés, délégation, heures/jours.</div>
-        <div class="legend-meta">4-8 mois · 5-10+ pers · $10-50K+/mois · 5-10% des cas</div>
+        <div class="legend-title">Multi-agent network</div>
+        <div class="legend-desc">Coordinated specialized agents, delegation, hours/days.</div>
+        <div class="legend-meta">4-8 mo · 5-10+ people · $10-50K+/mo · 5-10% of cases</div>
       </div>
     </div>
     <div class="report" id="reportContent"></div>
@@ -329,7 +329,7 @@
 
 </main>
 
-<footer class="footer">Agent Classifier · Le praticien qui te dit ce que tu construis vraiment.</footer>
+<footer class="footer">Agent Classifier · The practitioner who tells you what you're really building.</footer>
 
 <script>
   // ===== State
@@ -347,7 +347,7 @@
   fetch('/api/config').then(r => r.json()).then(cfg => {
     whisperEnabled = !!cfg.whisperEnabled;
     if (!whisperEnabled && !('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
-      $('micStatus').textContent = 'Dictée non disponible — utilise la zone texte.';
+      $('micStatus').textContent = 'Dictation unavailable — use the text area.';
       $('micBtn').style.opacity = '0.4';
       $('micBtn').style.cursor = 'not-allowed';
     }
@@ -368,17 +368,17 @@
         mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
         mediaRecorder.onstop = async () => {
           stream.getTracks().forEach(t => t.stop());
-          $('micStatus').innerHTML = '<span class="spinner"></span> Transcription en cours…';
+          $('micStatus').innerHTML = '<span class="spinner"></span> Transcribing…';
           const blob = new Blob(audioChunks, { type: 'audio/webm' });
           try {
             const fd = new FormData();
             fd.append('file', blob, 'audio.webm');
             const r = await fetch('/api/transcribe', { method: 'POST', body: fd });
             const data = await r.json();
-            if (!r.ok) throw new Error(data.error || 'Erreur transcription');
+            if (!r.ok) throw new Error(data.error || 'Transcription error');
             const txt = data.text || '';
             $('textInput').value = ($('textInput').value ? $('textInput').value + '\n\n' : '') + txt;
-            $('micStatus').textContent = '✓ Ajouté au contexte.';
+            $('micStatus').textContent = '✓ Added to context.';
           } catch (e) {
             $('micStatus').textContent = '❌ ' + e.message;
           }
@@ -386,9 +386,9 @@
         mediaRecorder.start();
         isRecording = true;
         setRecUI(true);
-        $('micStatus').textContent = '🔴 Enregistrement… clique à nouveau pour arrêter.';
+        $('micStatus').textContent = '🔴 Recording… tap again to stop.';
       } catch (e) {
-        $('micStatus').textContent = '❌ Micro non accessible.';
+        $('micStatus').textContent = '❌ Microphone unavailable.';
       }
     } else {
       mediaRecorder.stop();
@@ -399,10 +399,10 @@
 
   function toggleNativeSpeech() {
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SR) { $('micStatus').textContent = '❌ Reconnaissance vocale non supportée (utilise Chrome).'; return; }
+    if (!SR) { $('micStatus').textContent = '❌ Speech recognition not supported (use Chrome).'; return; }
     if (!isRecording) {
       speechRec = new SR();
-      speechRec.lang = 'fr-FR';
+      speechRec.lang = navigator.language || 'en-US';
       speechRec.continuous = true;
       speechRec.interimResults = false;
       speechRec.onresult = (e) => {
@@ -415,11 +415,11 @@
         }
       };
       speechRec.onerror = (e) => { $('micStatus').textContent = '❌ ' + e.error; setRecUI(false); isRecording = false; };
-      speechRec.onend = () => { if (isRecording) { setRecUI(false); isRecording = false; $('micStatus').textContent = '✓ Dictée ajoutée au contexte.'; } };
+      speechRec.onend = () => { if (isRecording) { setRecUI(false); isRecording = false; $('micStatus').textContent = '✓ Dictation added to context.'; } };
       speechRec.start();
       isRecording = true;
       setRecUI(true);
-      $('micStatus').textContent = '🔴 Parle… clique à nouveau pour arrêter.';
+      $('micStatus').textContent = '🔴 Listening… tap again to stop.';
     } else {
       if (speechRec) speechRec.stop();
       isRecording = false;
@@ -447,7 +447,7 @@
         const text = await extractText(f);
         attachedFiles.push({ name: f.name, text });
       } catch (e) {
-        alert('Erreur sur ' + f.name + ' : ' + e.message);
+        alert('Error on ' + f.name + ': ' + e.message);
       }
     }
     renderFiles();
@@ -478,7 +478,7 @@
       chip.innerHTML = `
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
         <span>${escape(f.name)}</span>
-        <button aria-label="Retirer">
+        <button aria-label="Remove">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>`;
       chip.querySelector('button').addEventListener('click', (e) => {
@@ -495,14 +495,14 @@
   $('analyzeBtn').addEventListener('click', async () => {
     const text = $('textInput').value.trim();
     if (!text && attachedFiles.length === 0) {
-      $('analyzeStatus').textContent = 'Ajoute du texte, une dictée ou un document.';
+      $('analyzeStatus').textContent = 'Add some text, a dictation or a document.';
       $('analyzeStatus').classList.add('error');
       return;
     }
     $('analyzeStatus').classList.remove('error');
     $('analyzeBtn').disabled = true;
-    $('analyzeLabel').innerHTML = '<span class="spinner"></span> Analyse en cours';
-    $('analyzeStatus').innerHTML = 'Classification, débunk, projection, delta IA vs sans IA…';
+    $('analyzeLabel').innerHTML = '<span class="spinner"></span> Analyzing';
+    $('analyzeStatus').innerHTML = 'Classification, debunk, projection, AI vs no-AI delta…';
     $('reportWrap').style.display = 'none';
 
     try {
@@ -512,18 +512,18 @@
         body: JSON.stringify({ text, files: attachedFiles })
       });
       const data = await r.json();
-      if (!r.ok) throw new Error(data.error || 'Erreur');
+      if (!r.ok) throw new Error(data.error || 'Error');
       lastReportMd = data.report;
       renderReport(lastReportMd);
       $('reportWrap').style.display = 'block';
-      $('analyzeStatus').textContent = '✓ Rapport prêt.';
+      $('analyzeStatus').textContent = '✓ Report ready.';
       $('reportWrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
     } catch (e) {
       $('analyzeStatus').textContent = '❌ ' + e.message;
       $('analyzeStatus').classList.add('error');
     } finally {
       $('analyzeBtn').disabled = false;
-      $('analyzeLabel').textContent = 'Classifier le projet';
+      $('analyzeLabel').textContent = 'Classify project';
     }
   });
 
@@ -535,7 +535,7 @@
 
     // --- Extract title + classification for banner
     const h1 = container.querySelector('h1');
-    const titleText = h1 ? h1.textContent.replace(/^Rapport de classification\s*[—–-]?\s*/i, '').trim() : 'Projet';
+    const titleText = h1 ? h1.textContent.replace(/^(Rapport de classification|Classification report)\s*[—–-]?\s*/i, '').trim() : 'Project';
 
     // Find the "Classification" section
     const allText = container.textContent;
@@ -556,10 +556,10 @@
         </div>
         <div class="verdict-meta">
           <div class="eyebrow">${escape(titleText)}</div>
-          <h2>Le projet est de catégorie ${cat}</h2>
-          ${claimed && claimed !== cat ? `<div class="claim">Revendiquée : <strong>Cat ${claimed}</strong> · écart détecté</div>` : (claimed ? `<div class="claim">Conforme à la catégorie revendiquée</div>` : '')}
-          ${confMatch ? `<div class="claim" style="margin-top:4px">Confiance : <strong>${escape(confMatch[1])}</strong></div>` : ''}
-          ${signalMatch ? `<div class="verdict-gap"><strong>Signal clé :</strong> ${escape(signalMatch[1].replace(/\*/g, '').trim())}</div>` : ''}
+          <h2>This project is Category ${cat}</h2>
+          ${claimed && claimed !== cat ? `<div class="claim">Claimed: <strong>Cat ${claimed}</strong> · gap detected</div>` : (claimed ? `<div class="claim">Matches the claimed category</div>` : '')}
+          ${confMatch ? `<div class="claim" style="margin-top:4px">Confidence: <strong>${escape(confMatch[1])}</strong></div>` : ''}
+          ${signalMatch ? `<div class="verdict-gap"><strong>Key signal:</strong> ${escape(signalMatch[1].replace(/\*/g, '').trim())}</div>` : ''}
         </div>
       </div>`;
 
@@ -604,7 +604,7 @@
     navigator.clipboard.writeText(lastReportMd).then(() => {
       const b = $('copyBtn');
       const orig = b.innerHTML;
-      b.innerHTML = '✓ Copié';
+      b.innerHTML = '✓ Copied';
       setTimeout(() => b.innerHTML = orig, 1500);
     });
   });
@@ -612,7 +612,7 @@
     const blob = new Blob([lastReportMd], { type: 'text/markdown' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = 'rapport-classification.md';
+    a.download = 'classification-report.md';
     a.click();
   });
   $('dlPdfBtn').addEventListener('click', () => window.print());
